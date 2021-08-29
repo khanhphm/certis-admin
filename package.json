@@ -1,7 +1,8 @@
 {
   "name": "certis-admin",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage":"https://liam-parry.github.io/certis-admin/",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
