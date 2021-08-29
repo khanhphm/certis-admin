@@ -1,32 +1,66 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <div class="d-flex align-center">
+        <v-avatar
+          size="50"
+          color="primary"
+        >
+          <img src="./assets/logo.png">
+        </v-avatar>
+
+        <h1 class="ml-2">Trang Quản Trị</h1>
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        href="https://liam-parry.github.io/certis"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Quay lại trang tra cứu</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <router-view></router-view>
+      
+    </v-main>
+  </v-app>
+  
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
 
-#nav {
-  padding: 30px;
-}
+//import {web3} from './we'
+export default {
+  name: 'App',
+  components:{
+  
+  },
+  data: () => ({
+    //
+  }),
+  created() {
+    window.ethereum.request({
+      method: "eth_requestAccounts",
+    }).then((data)=>{
+      this.$store.state.address = data[0];
+      
+    });
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  },
+  computed:{
+    login(){
+      return this.$store.state.address=='0xb54aad7b14022d96e26566149fffbd6c067d2e39'
+    }
+  }
+};
+</script>
